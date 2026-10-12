@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "しんのすけ",
 
 	// 个人签名
-	bio: "Hello, I'm しんのすけ.",
+	bio: "记录 ACG 日常与技术折腾。",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
@@ -24,13 +24,13 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "fa7-brands:github",
-			url: "https://github.com/CuteLeaf",
+			url: "https://github.com/yulu1235",
 			showName: false,
 		},
 		{
 			name: "Email",
 			icon: "fa7-solid:envelope",
-			url: "mailto:xiaye@msn.com",
+			url: "mailto:2276408400@qq.com",
 			showName: false,
 		},
 		{

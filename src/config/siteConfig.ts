@@ -37,33 +37,29 @@ const pages = resolvePageToggles({
 	// ── 关于 (About) ──────────────────────────────────
 
 	// 打赏页面开关
-	sponsor: true,
+	// 置为 false：sponsorConfig.ts 里的收款链接还是主题作者的，挂在自己站上不合适。
+	// 想开打赏：先把自己的收款链接填进 sponsorConfig.ts，再改回 true
+	sponsor: false,
 });
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "Firefly",
+	title: "しんのすけ",
 
 	// 站点副标题
-	subtitle: "Demo site",
+	subtitle: "一个 ACG 爱好者的自留地",
 
-	// 站点 URL
-	site_url: "https://firefly.cuteleaf.cn",
+	// 站点 URL（origin 根地址，不含子路径）
+	// 这里决定分享卡片、OG 图、RSS、llms.txt 里的绝对地址，必须和线上实际访问的域名一致。
+	// 如果以后改用 apex 主域名（https://suunar.com），记得同步改这里，
+	// 并在 Cloudflare 上把 www 与 apex 之间配好一条 301 跳转，避免两个域名各算一份收录。
+	site_url: "https://www.suunar.com",
 
 	// 站点描述
-	description:
-		"Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。",
+	description: "しんのすけ 的个人博客，记录 ACG 日常、动画游戏和一些技术折腾。",
 
 	// 站点关键词
-	keywords: [
-		"Firefly",
-		"Fuwari",
-		"Astro",
-		"ACGN",
-		"博客",
-		"技术博客",
-		"静态博客",
-	],
+	keywords: ["ACG", "动画", "游戏", "音乐", "博客", "静态博客", "Astro"],
 
 	// 主题色
 	themeColor: {
@@ -117,7 +113,7 @@ export const siteConfig: SiteConfig = {
 			alt: "🍀",
 		},
 		// 导航栏标题
-		title: "Firefly Blog",
+		title: "しんのすけ",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -132,7 +128,8 @@ export const siteConfig: SiteConfig = {
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2025-01-01",
+	// 暂按你开始在这个仓库上做定制的时间（首个自己的提交）填，可自行调整
+	siteStartDate: "2026-10-11",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
