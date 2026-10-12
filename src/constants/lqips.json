@@ -1,5 +1,4 @@
 {
-  "src:assets/images/avatar.avif": "304175445686363653",
   "public:gallery/firefly-2026/cover.avif": "7588a28a8f989e8d88",
   "public:gallery/firefly-2026/1.avif": "c8bca9dde6d2babfb5",
   "src:content/posts/guide/cover.avif": "c8bca9dde6d2babfb5",
@@ -36,5 +35,6 @@
   "public:assets/images/ad/ad1.webp": "a1b8b68a8e918c8f93",
   "src:content/projects/images/firefly.avif": "b5b0b3bcb6bbe0e0df",
   "src:assets/images/MobileWallpaper/ocean-painting.jpg": "78778a6d6e83858598",
-  "src:assets/images/DesktopWallpaper/ocean-painting.jpg": "99aec9879bba797d9b"
+  "src:assets/images/DesktopWallpaper/ocean-painting.jpg": "99aec9879bba797d9b",
+  "src:assets/images/avatar.avif": "304175445686363653"
 }
