@@ -121,6 +121,7 @@ const tLoadError = i18n(I18nKey.videoLoadError);
 
 		function doPlay() {
 			video.src = urlList[currentIndex];
+			video.loop = true;
 			video.muted = true;
 			video.play()
 				.then(function () { setTimeout(function () { if (video) video.muted = false; }, 100); })
@@ -203,6 +204,20 @@ const tLoadError = i18n(I18nKey.videoLoadError);
 			if (prevBtn) prevBtn.style.display = "none";
 			if (nextBtn) nextBtn.style.display = "none";
 		}
+
+		// 初始化自动播放（二改：背景视频默认静音循环播放，无需手动点击）
+		isPlaying = true;
+		syncAttr();
+		if (overlay) { overlay.classList.remove("opacity-0"); overlay.classList.add("opacity-100"); }
+		requestAnimationFrame(function () {
+			video.src = urlList[currentIndex];
+			video.loop = true;
+			video.muted = true;
+			video.play().catch(function () {
+				isPlaying = false;
+				syncAttr();
+			});
+		});
 
 		function cleanup() {
 			// 视频仍在播放时保留属性，供 Navbar 同步按钮状态

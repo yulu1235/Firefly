@@ -12,7 +12,8 @@ export const WALLPAPER_BANNER = "banner",
 	WALLPAPER_NONE = "none";
 
 // Banner height unit: vh
-export const BANNER_HEIGHT = 35;
+// 二改：首页 banner 高度 65vh → 90vh，让 16:9 动态壁纸画面更完整显示
+export const BANNER_HEIGHT = 60;
 export const BANNER_HEIGHT_EXTEND = 30;
 export const BANNER_HEIGHT_HOME: number = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND;
 
