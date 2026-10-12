@@ -219,7 +219,7 @@ export async function GET({
 	const { post } = props;
 
 	// Load and get static assets
-	let iconPath = "/favicon/favicon-dark-192.png";
+	let iconPath = "/favicon/site-192.png";
 	if (siteConfig.favicon.length > 0) {
 		const pngFavicon = siteConfig.favicon.find((f) =>
 			f.src.toLowerCase().endsWith(".png"),
