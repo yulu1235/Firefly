@@ -18,7 +18,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	playMode: "list",
 
 	// 是否显启用歌词
-	showLyrics: false,
+	showLyrics: true,
 
 	// Meting API 配置
 	meting: {
@@ -51,8 +51,15 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				name: "晴る",
 				artist: "ヨルシカ",
 				url: "/assets/music/haru.mp3",
-				cover: "",
-				lrc: "",
+				cover: "/assets/music/cover/haru.webp",
+				lrc: "/assets/music/lrc/haru.lrc",
+			},
+			{
+				name: "前前前世 (movie ver.)",
+				artist: "RADWIMPS",
+				url: "/assets/music/zenzenzense.mp3",
+				cover: "/assets/music/cover/zenzenzense.webp",
+				lrc: "/assets/music/lrc/zenzenzense.lrc",
 			},
 		],
 	},
