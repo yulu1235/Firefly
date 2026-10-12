@@ -63,6 +63,22 @@ export type BackgroundWallpaperConfig = {
 		};
 	};
 
+	// 首页整屏壁纸随滚动淡出（避免亮壁纸影响正文阅读）
+	// 与壁纸模式无关：banner / fullscreen / overlay 的首页都生效（none 没有壁纸，自动跳过）
+	homeScrollFade?: {
+		// 是否启用，支持布尔值或分别设置桌面端和移动端，默认 true
+		enable:
+			| boolean
+			| {
+					desktop: boolean; // 桌面端是否启用
+					mobile: boolean; // 移动端是否启用
+			  };
+		// 滚动多少倍视口高度后壁纸完全淡出，默认 0.8（即滚动 0.8 个屏高）
+		distance?: number;
+		// 淡出到的最小透明度，0-1 之间，0 = 完全消失，默认 0
+		minOpacity?: number;
+	};
+
 	// Banner模式特有配置
 	banner?: {
 		position?:

@@ -130,6 +130,21 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			height: "10%",
 		},
 	},
+	// 首页整屏壁纸随滚动淡出：首屏完整显示壁纸，下滑时透明度渐变到 0，
+	// 让文章列表最终落在纯色页面上，避免亮背景干扰阅读。
+	// 对 banner / fullscreen / overlay 三种模式的首页都生效（none 模式没有壁纸，自动跳过）。
+	homeScrollFade: {
+		enable: {
+			// 桌面端是否启用
+			desktop: true,
+			// 移动端是否启用
+			mobile: true,
+		},
+		// 滚动多少倍视口高度后壁纸完全淡出（0.8 = 滚动 0.8 个屏高就没了；调大更慢、更"慢慢淡出"）
+		distance: 0.8,
+		// 淡出到的最小透明度：0 = 完全消失，想留一点壁纸影子可以调成 0.15 之类
+		minOpacity: 0,
+	},
 	// Banner模式特有配置
 	banner: {
 		// 图片位置

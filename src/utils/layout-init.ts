@@ -15,6 +15,10 @@ import {
 	updateMainGridCols,
 	updateSidebarComponentsVisibility,
 } from "@/utils/grid-layout-utils";
+import {
+	initHomeWallpaperFade,
+	syncHomeWallpaperFade,
+} from "@/utils/home-wallpaper-fade-utils";
 import { initIconLoader } from "@/utils/icon-loader";
 import { initImageLoadFadeIn } from "@/utils/lqip-utils";
 import { initScroll } from "@/utils/scroll-utils";
@@ -53,6 +57,7 @@ export function initLayout(): void {
 
 	setupSwupTransitions();
 	initFullscreenWallpaper();
+	initHomeWallpaperFade();
 	registerContentOverflowListeners();
 	// 滚动路径不再读取布局；先在初始化时填充侧边栏 top 容器可见性缓存
 	refreshSidebarStickyState();
@@ -77,6 +82,8 @@ export function initLayout(): void {
 			initThemeListener();
 			initIconLoader();
 			syncFullscreenStateAfterInit();
+			// 运行时壁纸模式（可能来自用户设置）此时才确定，重新同步一次淡出状态
+			syncHomeWallpaperFade();
 		});
 	} else {
 		updateMainGridCols();
@@ -85,15 +92,22 @@ export function initLayout(): void {
 		initThemeListener();
 		initIconLoader();
 		syncFullscreenStateAfterInit();
+		// 运行时壁纸模式（可能来自用户设置）此时才确定，重新同步一次淡出状态
+		syncHomeWallpaperFade();
 	}
 
 	initImageLoadFadeIn();
 	// 切页换入后延到下一帧再重扫 LQIP fade-in，避免 astro:page-load 在同帧叠加
-	// 一堆游标/事件重扫阻塞换入首帧（swup:contentReplaced 已 rAF，一并延后）
+	// 一堆游标/事件重扫阻塞换入首帧（swup:contentReplaced 已 rAF，一并延后）；
+	// 同时按新页面重新同步壁纸淡出（body.is-home 与壁纸模式都可能已经变化）
+	const resyncAfterNavigation = (): void => {
+		initImageLoadFadeIn();
+		syncHomeWallpaperFade();
+	};
 	document.addEventListener("astro:page-load", () => {
-		requestAnimationFrame(initImageLoadFadeIn);
+		requestAnimationFrame(resyncAfterNavigation);
 	});
 	document.addEventListener("swup:contentReplaced", () => {
-		requestAnimationFrame(initImageLoadFadeIn);
+		requestAnimationFrame(resyncAfterNavigation);
 	});
 }
