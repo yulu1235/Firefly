@@ -163,6 +163,26 @@
     -webkit-backdrop-filter: blur(var(--banner-card-blur, 10px));
     backdrop-filter: blur(var(--banner-card-blur, 10px));
   }
+  /* ============================================
+   * 四改：手机上把首页内容起点提前，别让首屏只剩壁纸/视频。
+   * 首页 banner 高度是 90vh（二改，为桌面 16:9 壁纸留的），内容面板 top 因此是 90vh - 3.5rem；
+   * 桌面视口正好 100vh，卡片还能在屏幕最下沿露一条；但手机可见高度不到 100vh
+   * （地址栏占掉一截，vh 按 lvh 算），86.5vh 会落到屏幕外 → 表现为「整屏只有视频、看不到文章」。
+   * 又因为 banner 模式下下滑提示箭头是 display:none（只在 fullscreen 显示），手机上没有提示。
+   * 这里窄屏把首页内容起点压回主题原始的 65vh - 3.5rem：
+   *   - 壁纸/视频仍是 fixed 铺满整屏（三改），观感不变；
+   *   - hero 标题仍居中在 90vh 的横幅里，不会被内容压到；
+   *   - 首屏底部露出第一张卡片，用户一眼知道下面有内容。
+   * 注意 --banner-height-home 是行内写在 body 上的，改它要 !important；
+   * 这里只改 --content-top（样式表规则），影响面最小。导航栏不受影响：
+   * dynamic / sticky 模式下 #top-row 的高度是 !important 的 4.5rem。
+   * ============================================ */
+  @media (max-width: 1023px) {
+    html[data-wallpaper-mode="banner"] body.is-home .content-panel {
+      --content-top: calc(65vh - 3.5rem);
+    }
+  }
+
   @media (max-width: 1023px) {
     html[data-wallpaper-mode="banner"] body:not(.is-home) #wallpaper-wrapper {
       display: none !important;
