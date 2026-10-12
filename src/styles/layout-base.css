@@ -108,6 +108,61 @@
     transform: none;
     display: block;
   }
+  /* 二改：桌面端 banner 壁纸加轻微 3D 透视（perspective + 后仰 + 放大补偿），
+     让 16:9 动态壁纸画面视觉上更完整、更有纵深；移动端保持原样不受影响。
+     首页已改为「壁纸铺满整屏」（见下方三改），透视只保留给非首页横幅 */
+  @media (min-width: 1024px) {
+    html[data-wallpaper-mode="banner"] body:not(.is-home) #banner-images-container,
+    html[data-wallpaper-mode="banner"] body:not(.is-home) #bg-player-overlay {
+      transform: perspective(1000px) rotateX(3deg) scale(1.06);
+      transform-origin: 50% 45%;
+      will-change: transform;
+    }
+  }
+
+  /* ============================================
+   * 三改：首页 banner 壁纸铺满整屏（不再被下方内容区截断）
+   * 图片/视频层脱离横幅容器、fixed 铺满整个视口：
+   * 高度用 100lvh + object-cover，任意屏幕尺寸/宽高比都自适应，无写死像素。
+   * 只作用于首页：非首页的 #wallpaper-wrapper 带 translateY 变换，
+   * 会成为 fixed 子元素的包含块并裁剪它，故保持原有横幅行为不变。
+   * wrapper 自身在 banner 模式下无 transform，其 overflow 不裁剪 fixed 子元素。
+   * 用 !important 是因为元素上的 Tailwind 工具类（relative / h-full）在 utilities 层，优先级更高。
+   * ============================================ */
+  html[data-wallpaper-mode="banner"] body.is-home #banner-images-container,
+  html[data-wallpaper-mode="banner"] body.is-home #bg-player-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100lvh !important;
+    transform: none !important;
+  }
+
+  /* 遮罩同样铺满视口：否则只会压暗横幅那一段，在横幅下沿留下一条明暗分界线 */
+  html[data-wallpaper-mode="banner"] body.is-home #banner-dim-container {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100lvh !important;
+  }
+
+  /* 水波纹/渐变的作用是让横幅底边过渡到页面纯色背景；壁纸铺满后页面已无纯色背景，
+     保留会在横幅下沿形成一条深色波带，故首页隐藏（其余页面照旧） */
+  html[data-wallpaper-mode="banner"] body.is-home #header-waves,
+  html[data-wallpaper-mode="banner"] body.is-home #wallpaper-gradient {
+    display: none !important;
+  }
+
+  /* 壁纸铺满后，首页卡片改半透明毛玻璃，让背景图从卡片下方透出来；
+     透明度跟随设置面板的「卡片透明度」(--card-transparent-opacity)，模糊度可用
+     --banner-card-blur 覆盖（设 0 即只半透明不模糊） */
+  html[data-wallpaper-mode="banner"] body.is-home .card-base {
+    background-color: var(--card-bg-transparent) !important;
+    -webkit-backdrop-filter: blur(var(--banner-card-blur, 10px));
+    backdrop-filter: blur(var(--banner-card-blur, 10px));
+  }
   @media (max-width: 1023px) {
     html[data-wallpaper-mode="banner"] body:not(.is-home) #wallpaper-wrapper {
       display: none !important;
