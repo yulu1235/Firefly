@@ -13,7 +13,18 @@ draft: false
 lang: "zh_CN"
 ---
 
-<video src="/videos/kwanxin-recipe-ghibli.mp4" controls playsinline preload="metadata" style="width:100%;border-radius:12px;"></video>
+<div style="display:flex;justify-content:center;margin:1.75rem 0;">
+  <video
+    src="/videos/kwanxin-recipe-ghibli.mp4"
+    poster="/videos/kwanxin-recipe-ghibli-poster.jpg"
+    width="720"
+    height="1280"
+    controls
+    playsinline
+    preload="metadata"
+    style="width:100%;max-width:400px;height:auto;border-radius:12px;display:block;"
+  ></video>
+</div>
 
 秋天喝桂花汾酒，是抖音上的热点。我想做的不是调酒教程，而是把它包装成游戏里「合成一个状态」的过程——三个槽位放上干桂花、汾酒、冰块，合成出「宽心 +1」。画面用宫崎骏那种手绘水彩。
 
