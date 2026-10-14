@@ -61,6 +61,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				cover: "/assets/music/cover/zenzenzense.webp",
 				lrc: "/assets/music/lrc/zenzenzense.lrc",
 			},
+			{
+				name: "I Stay In Love",
+				artist: "Mariah Carey",
+				url: "/assets/music/i-stay-in-love.mp3",
+				cover: "/assets/music/cover/i-stay-in-love.webp",
+				lrc: "/assets/music/lrc/i-stay-in-love.lrc",
+			},
 		],
 	},
 };
